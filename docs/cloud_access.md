@@ -31,18 +31,29 @@ from your repo.
 
 ### Step-by-step
 
+This repository ships a `.devcontainer/devcontainer.json` so a fresh
+Codespace comes fully configured — no manual `pip install`, no manual
+extension setup, no interpreter picking.
+
 1. On the repo page: **Code → Codespaces → Create codespace on main**.
-2. Wait for the container to build (first time only, ~1–2 min).
-3. In the Codespace terminal:
+2. Wait for the container to build (~2–3 minutes the first time).
+   During the build, the devcontainer:
+   - starts from `mcr.microsoft.com/devcontainers/python:1-3.12`;
+   - runs `pip install -e '.[dev]'`;
+   - installs the Python, Pylance, Jupyter, and Ruff VS Code extensions;
+   - selects `/usr/local/bin/python` as the interpreter;
+   - turns on pytest, format-on-save with Ruff, and Ruff auto-fixes on
+     save.
+3. When the editor opens, open any notebook from `notebooks/` and pick
+   the offered **Python 3.12** kernel.
+4. Confirm the environment works from the Codespace terminal:
 
    ```bash
-   pip install -e ".[dev]"
+   pytest -q
+   python scripts/validate_repository.py
    ```
 
-4. Open any notebook from `notebooks/`.
-5. When prompted, pick the Python kernel (the container already has
-   `ipykernel` installed as a dev dep).
-6. Edit → save → commit → push. A Codespace is a real git checkout, so
+5. Edit → save → commit → push. A Codespace is a real git checkout, so
    the standard git workflow works unchanged:
 
    ```bash
@@ -51,8 +62,16 @@ from your repo.
    git push
    ```
 
-7. **Stop the Codespace** from the GitHub Codespaces page when done —
-   idle Codespaces still consume free-tier hours until they auto-suspend.
+6. **Stop the Codespace** from
+   [github.com/codespaces](https://github.com/codespaces) when done —
+   idle Codespaces still consume free-tier hours until they auto-suspend
+   (default: 30 minutes of inactivity).
+
+### Updating the Codespace config later
+
+If you edit `.devcontainer/devcontainer.json`, run **Codespaces:
+Rebuild Container** from the Codespace's command palette to pick up
+changes. Existing work is preserved across the rebuild.
 
 ## Google Colab (optional)
 
