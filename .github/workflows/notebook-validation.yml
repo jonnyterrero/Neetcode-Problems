@@ -1,0 +1,58 @@
+name: Notebook validation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "notebooks/**"
+      - "templates/**/*.ipynb"
+      - "scripts/validate_repository.py"
+      - "scripts/clean_notebook_outputs.py"
+  pull_request:
+    paths:
+      - "notebooks/**"
+      - "templates/**/*.ipynb"
+      - "scripts/validate_repository.py"
+      - "scripts/clean_notebook_outputs.py"
+  workflow_dispatch:
+
+jobs:
+  notebooks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dev deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Structural notebook check
+        run: python scripts/validate_repository.py --notebooks-only
+
+      - name: Notebook format validation
+        run: |
+          python - <<'PY'
+          import json, sys
+          from pathlib import Path
+          import nbformat
+          errors = 0
+          for nb_path in Path("notebooks").glob("*.ipynb"):
+              try:
+                  nb = nbformat.read(str(nb_path), as_version=4)
+                  nbformat.validate(nb)
+              except Exception as exc:
+                  print(f"FAIL {nb_path}: {exc}")
+                  errors += 1
+              else:
+                  print(f"ok   {nb_path}")
+          if errors:
+              sys.exit(1)
+          PY
