@@ -1,0 +1,25 @@
+# Enforce LF for text files across platforms
+* text=auto eol=lf
+
+# Explicit text files
+*.py    text eol=lf diff=python
+*.md    text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+*.toml  text eol=lf
+*.txt   text eol=lf
+*.csv   text eol=lf
+*.json  text eol=lf
+
+# Notebooks: text (JSON) but treat as generated for readable diffs.
+# We keep notebook outputs in git only when intentional; see
+# scripts/clean_notebook_outputs.py and docs/notebook_guide.md.
+*.ipynb text eol=lf
+
+# Binary assets (rarely needed; keep small)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
+*.zip binary

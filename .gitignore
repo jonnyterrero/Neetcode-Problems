@@ -1,0 +1,95 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+.env
+.env.*
+!.env.example
+
+# Testing / coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+.hypothesis/
+.mypy_cache/
+.ruff_cache/
+.pyre/
+.pytype/
+
+# Jupyter / IPython
+.ipynb_checkpoints/
+profile_default/
+ipython_config.py
+*.nbconvert.ipynb
+
+# Editors / OS
+.vscode/*
+!.vscode/settings.example.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local, private, or sensitive coursework
+# See docs/coursework_privacy.md before removing these rules.
+coursework/**/private/
+coursework/**/_private/
+coursework/**/*.private.*
+coursework/**/*_solutions_key.*
+coursework/**/*answer_key*
+coursework/**/exams/
+
+# Local scratch / experiments
+scratch/
+sandbox/
+tmp/
+*.log
+
+# Data files that should not live in git
+*.sqlite
+*.sqlite3
+*.db
+*.parquet
+*.h5
+*.hdf5
+*.npy
+*.npz
+*.pkl
+*.pickle
+
+# Node / other tools (if ever added)
+node_modules/

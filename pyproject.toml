@@ -1,0 +1,140 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "neetcode-learning-system"
+version = "0.1.0"
+description = "Programming-practice and computational-learning system built on top of NeetCode-synchronized submissions."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+authors = [{ name = "Jonny Terrero" }]
+keywords = ["leetcode", "neetcode", "algorithms", "learning", "jupyter"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Education",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Education",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "jupyterlab>=4.0",
+    "ipykernel>=6.28",
+    "nbformat>=5.9",
+    "nbconvert>=7.14",
+    "nbclient>=0.9",
+    "pytest>=8.0",
+    "pytest-cov>=4.1",
+    "ruff>=0.5.0",
+    "mypy>=1.10",
+    "pandas>=2.1",
+    "matplotlib>=3.8",
+]
+
+[project.urls]
+Repository = "https://github.com/jonnyterrero/Neetcode-Problems"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+exclude = ["tests*", "notebooks*", "docs*", "scripts*"]
+
+# ---------------------------------------------------------------------------
+# Ruff — linting and formatting
+# ---------------------------------------------------------------------------
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = [
+    ".venv",
+    "build",
+    "dist",
+    # NeetCode-generated submissions are externally managed and often
+    # intentionally raw. They are excluded from linting/formatting to
+    # avoid touching sync output.
+    "Data Structures & Algorithms",
+    "Python For Beginners",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle
+    "F",    # pyflakes
+    "I",    # isort
+    "UP",   # pyupgrade
+    "B",    # bugbear
+    "SIM",  # simplify
+    "N",    # naming
+]
+ignore = [
+    "E501",  # long lines handled by formatter
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["N802", "N803"]  # allow camelCase from LeetCode signatures
+"templates/**/*.py" = ["N802", "N803"]
+"scripts/**/*.py" = []
+
+[tool.ruff.format]
+quote-style = "double"
+line-ending = "lf"
+
+# ---------------------------------------------------------------------------
+# Pytest
+# ---------------------------------------------------------------------------
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "-ra",
+    "--strict-markers",
+    "--strict-config",
+]
+markers = [
+    "unit: fast, isolated unit tests",
+    "integration: slower tests that touch the filesystem",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["src", "scripts"]
+omit = [
+    "*/__init__.py",
+    "tests/*",
+]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
+precision = 1
+
+# ---------------------------------------------------------------------------
+# Mypy
+# ---------------------------------------------------------------------------
+[tool.mypy]
+python_version = "3.11"
+strict = false
+warn_unused_configs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+check_untyped_defs = true
+disallow_untyped_defs = false
+ignore_missing_imports = true
+exclude = [
+    "build/",
+    "dist/",
+    "\\.venv/",
+    "Data Structures & Algorithms/",
+    "Python For Beginners/",
+    "notebooks/",
+]
+

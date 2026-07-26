@@ -1,0 +1,15 @@
+# Development dependencies. Prefer:
+#     pip install -e ".[dev]"
+# which uses pyproject.toml. This file exists for tools that do not
+# read PEP 621 optional-dependencies.
+jupyterlab>=4.0
+ipykernel>=6.28
+nbformat>=5.9
+nbconvert>=7.14
+nbclient>=0.9
+pytest>=8.0
+pytest-cov>=4.1
+ruff>=0.5.0
+mypy>=1.10
+pandas>=2.1
+matplotlib>=3.8
