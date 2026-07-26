@@ -99,3 +99,68 @@ python scripts/generate_progress_report.py
 ```
 
 Read `tracking/topic_progress.md` and pick weak topics for next week.
+
+## Multi-device and NeetCode-sync safety
+
+NeetCode's GitHub Sync also pushes to `main` — from the web editor,
+often while you are working locally. If your local `main` is behind
+when you try to push, git rejects with "non-fast-forward". Adopt this
+discipline to avoid divergent history:
+
+```bash
+# Start of every session on any machine:
+git pull --rebase
+
+# ... work ...
+
+# Right before every push:
+git pull --rebase
+git push
+```
+
+`--rebase` replays your local commits on top of whatever landed
+remotely, so history stays linear. If you forget and get a
+"non-fast-forward" error, the fix is the same:
+
+```bash
+git pull --rebase
+# resolve conflicts if any (rare — NeetCode and your notes touch
+# different folders); then:
+git rebase --continue
+git push
+```
+
+### Verifying your notebook changes reach GitHub
+
+Sanity check to run once end-to-end:
+
+```bash
+# 1. Edit and save a notebook (Ctrl+S).
+# 2. Confirm git sees it:
+git status                            # should list the .ipynb as modified
+git diff notebooks/<file>.ipynb | head  # should show your change
+
+# 3. Commit and push:
+git add notebooks/<file>.ipynb
+git commit -m "study: test note"
+git push
+
+# 4. Refresh the file on github.com — your change should appear.
+```
+
+If step 2 shows no change, the notebook wasn't saved (the tab title
+has a dot when unsaved).
+
+## What syncs from where
+
+| Content | Written by | Where it lands |
+|---|---|---|
+| NeetCode submissions | NeetCode.io GitHub Sync | `Data Structures & Algorithms/`, `Python For Beginners/` |
+| Manual practice | You (locally) | `practice/**` |
+| Notebooks and notes | You (locally) | `notebooks/**`, per-problem `NOTES.md` |
+| Coursework | You (locally) | `coursework/**` |
+| LeetCode auto-sync | Third-party browser extension | A **separate** repo — see [`leetcode_sync.md`](leetcode_sync.md) |
+
+The syncs write to disjoint folders and do not collide, but they can
+race on branch tip — that's what the `pull --rebase` habit above
+protects against.

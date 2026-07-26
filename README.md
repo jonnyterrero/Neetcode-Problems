@@ -3,6 +3,10 @@
 A personal, long-term learning system built on top of a
 [NeetCode.io](https://neetcode.io) GitHub-synchronized submissions repository.
 
+**Profiles:**
+[LeetCode: jterrero16](https://leetcode.com/u/jterrero16/) ·
+[NeetCode](https://neetcode.io)
+
 This repository stores:
 
 - **NeetCode-synchronized solutions** — written on neetcode.io and pushed here automatically.
@@ -176,6 +180,15 @@ GitHub is the permanent source of truth. Notebooks can be executed:
 - **In Google Colab** for one-off notebook execution (data does not persist).
 
 See [`docs/cloud_access.md`](docs/cloud_access.md) for trade-offs.
+
+## LeetCode auto-sync
+
+LeetCode has no first-party GitHub sync. If you want submissions on
+[leetcode.com/u/jterrero16](https://leetcode.com/u/jterrero16/) to push
+to a repo automatically, install a community browser extension
+(LeetHub v2 or LeetSync) and point it at a **separate** repo so it
+doesn't collide with NeetCode Sync here. Full setup in
+[`docs/leetcode_sync.md`](docs/leetcode_sync.md).
 
 ---
 

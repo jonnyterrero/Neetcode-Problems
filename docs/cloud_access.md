@@ -26,11 +26,33 @@ A full VS Code environment in the cloud, backed by a container built
 from your repo.
 
 - Pros: identical to local, works on Chromebooks or tablets, no laptop
-  needed.
+  needed. Free-tier ≈ 60 hours/month per user.
 - Cons: costs credits after the free monthly allowance.
 
-To use, click **Code → Codespaces** on GitHub. The container clones
-this repo automatically; run `pip install -e ".[dev]"` inside it.
+### Step-by-step
+
+1. On the repo page: **Code → Codespaces → Create codespace on main**.
+2. Wait for the container to build (first time only, ~1–2 min).
+3. In the Codespace terminal:
+
+   ```bash
+   pip install -e ".[dev]"
+   ```
+
+4. Open any notebook from `notebooks/`.
+5. When prompted, pick the Python kernel (the container already has
+   `ipykernel` installed as a dev dep).
+6. Edit → save → commit → push. A Codespace is a real git checkout, so
+   the standard git workflow works unchanged:
+
+   ```bash
+   git pull --rebase
+   git add . && git commit -m "study: …"
+   git push
+   ```
+
+7. **Stop the Codespace** from the GitHub Codespaces page when done —
+   idle Codespaces still consume free-tier hours until they auto-suspend.
 
 ## Google Colab (optional)
 
@@ -56,3 +78,9 @@ https://colab.research.google.com/github/jonnyterrero/Neetcode-Problems/blob/mai
   only durable store.
 - Never let a hosted environment write to your tracker CSV via a
   drive-mounted path — commit through git only.
+
+## Related
+
+- LeetCode auto-sync setup: [`leetcode_sync.md`](leetcode_sync.md).
+- Multi-device / pull-rebase discipline:
+  [`workflow.md`](workflow.md#multi-device-and-neetcode-sync-safety).
