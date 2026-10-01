@@ -16,7 +16,7 @@ _None._
 
 | Problem | Topic | Mastery | Next review | Solution |
 |---|---|---|---|---|
-| `min-stack` | stacks | 2 | 2026-08-05 | Data Structures & Algorithms/min-stack/submission-0.py |
+| `min-stack` | stacks | 2 | 2026-08-05 | Data Structures & Algorithms/minimum-stack/submission-0.py |
 
 ## Unscheduled (0)
 
@@ -26,5 +26,5 @@ _None._
 
 | Problem | Topic | Mastery | Next review | Solution |
 |---|---|---|---|---|
-| `min-stack` | stacks | 2 | 2026-08-05 | Data Structures & Algorithms/min-stack/submission-0.py |
+| `min-stack` | stacks | 2 | 2026-08-05 | Data Structures & Algorithms/minimum-stack/submission-0.py |
 
