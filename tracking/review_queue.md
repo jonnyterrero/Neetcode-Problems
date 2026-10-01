@@ -1,8 +1,8 @@
 # Review Queue
 
-_Generated 2026-07-26 by `scripts/generate_review_queue.py`._
+_Generated 2026-08-02 by `scripts/generate_review_queue.py`._
 
-Total tracked problems (excluding retired): **0**
+Total tracked problems (excluding retired): **1**
 
 ## Overdue (0)
 
@@ -12,15 +12,19 @@ _None._
 
 _None._
 
-## Due this week (0)
+## Due this week (1)
 
-_None._
+| Problem | Topic | Mastery | Next review | Solution |
+|---|---|---|---|---|
+| `min-stack` | stacks | 2 | 2026-08-05 | Data Structures & Algorithms/min-stack/submission-0.py |
 
 ## Unscheduled (0)
 
 _None._
 
-## Below mastery level 3 (0)
+## Below mastery level 3 (1)
 
-_None._
+| Problem | Topic | Mastery | Next review | Solution |
+|---|---|---|---|---|
+| `min-stack` | stacks | 2 | 2026-08-05 | Data Structures & Algorithms/min-stack/submission-0.py |
 

@@ -79,6 +79,7 @@ ignore = [
 [tool.ruff.lint.per-file-ignores]
 "tests/**/*.py" = ["N802", "N803"]  # allow camelCase from LeetCode signatures
 "templates/**/*.py" = ["N802", "N803"]
+"notebooks/**/*.ipynb" = ["N802", "N803"]  # study notes mirror platform signatures
 "scripts/**/*.py" = []
 
 [tool.ruff.format]
